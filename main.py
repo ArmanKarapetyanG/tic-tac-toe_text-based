@@ -73,42 +73,48 @@ def winner(emp):
             if i.brush == emp[0]:
                 return (f'{i.name} WINs!')
     else:
-        return ' '
+        return 'DRAW'
 while len(poses) != 0:
     if brush == "X":
-        print(f'move is up to {secondaryplayer.name}')
+        print(f'move is up to {secondaryplayer.name}, brush is {secondaryplayer.brush}')
         print_tic_tac_toe(emp)
+        if poses == []:
+            break
         move = int(input(f'Choose available position {poses} '))
         emp[move] = secondaryplayer.brush
         poses.remove(move)
-        print(f'your turn {mainplayer.name}')
+        print(f'your turn {mainplayer.name}, brush is {mainplayer.brush}')
         print_tic_tac_toe(emp)
-        if winner(emp) != ' ':
+        if winner(emp) != 'DRAW':
             print(winner(emp))
             break
-
+        if poses == []:
+            break
         move = int(input(f'Choose available position {poses} '))
         emp[move] = mainplayer.brush
         poses.remove(move)
         print_tic_tac_toe(emp)
-        if winner(emp) != ' ':
+        if winner(emp) != 'DRAW':
             print(winner(emp))
             break
     else:
-        print(f'move is up to {mainplayer.name}')
+        print(f'move is up to {mainplayer.name}, brush is {mainplayer.brush}')
         print_tic_tac_toe(emp)
+        if poses == []:
+            break
         move = int(input(f'Choose available position {poses} '))
         while move not in poses:
             print('please choose right pos')
             move = int(input(f'Choose available position {poses} '))
         emp[move] = mainplayer.brush
         poses.remove(move)
-        print(f'your turn {secondaryplayer.name}')
+        print(f'your turn {secondaryplayer.name}, brush is {secondaryplayer.brush}')
         print_tic_tac_toe(emp)
-        if winner(emp) != ' ':
+        if winner(emp) != 'DRAW':
             print(winner(emp))
             break
-
+        if poses == []:
+            break
         move = int(input(f'Choose available position {poses} '))
         while move not in poses:
             print('please choose right pos')
@@ -116,6 +122,9 @@ while len(poses) != 0:
         emp[move] = secondaryplayer.brush
         poses.remove(move)
         print_tic_tac_toe(emp)
-        if winner(emp) != ' ':
+        if winner(emp) != 'DRAW':
             print(winner(emp))
             break
+
+if winner(emp) == 'DRAW':
+    print(winner(emp))
